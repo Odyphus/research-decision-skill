@@ -1,0 +1,6 @@
+interface:
+  display_name: "Research Decision Skill"
+  short_description: "科研决策建议、专家依据与可选讲解"
+  default_prompt: "Use $research-decision-skill to identify my current STEM research decision, verify relevant public expert judgment, give one conditional default recommendation and next action, then offer to explain the judgment, expand the evidence, compare alternatives, or show the decision record."
+policy:
+  allow_implicit_invocation: true

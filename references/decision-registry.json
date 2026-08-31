@@ -1,0 +1,2229 @@
+{
+  "schema_version": 1,
+  "registry_id": "research-decision-skill-29d-v1",
+  "language": "en",
+  "provenance_note": "The D1-D29 mapping, source-grounded summaries, categories, and item locators were checked against the published supplement. Public labels and operational fields are original adaptations; they are not quoted source headings or author-validated AI rules.",
+  "license_boundary": "The Price et al. supplement is an attributed source, not bundled content. This registry does not reproduce the full decision definitions or a full translation.",
+  "field_provenance": {
+    "source_grounded_fields": [
+      "decision_id",
+      "category",
+      "source_definition_summary",
+      "source_refs"
+    ],
+    "source_grounded_note": "source_definition_summary is an attributed concise paraphrase of the cited decision meaning; it does not validate any downstream AI behavior.",
+    "design_fields_label": "[DESIGN]",
+    "design_fields": [
+      "official_label",
+      "routable",
+      "research_translation",
+      "common_research_contexts",
+      "trigger_signals",
+      "required_state",
+      "observable_good_behaviors",
+      "common_failure_modes",
+      "confusable_with",
+      "method_modules_to_invoke",
+      "evidence_needed",
+      "possible_next_actions",
+      "revisit_conditions",
+      "stop_or_abstain_conditions",
+      "do_not_infer",
+      "ai_ml_example",
+      "counterexample"
+    ],
+    "public_label_note": "The schema field official_label stores an original public-facing noun phrase, not the source heading."
+  },
+  "non_decision_themes": {
+    "routable": false,
+    "source_note": "Supplementary Text p. 9 lists items 30–34 under Non-Decision Themes, not the 29 decisions.",
+    "items": [
+      {
+        "theme_id": "NDT30",
+        "label": "Field currency"
+      },
+      {
+        "theme_id": "NDT31",
+        "label": "Experience-grounded intuition"
+      },
+      {
+        "theme_id": "NDT32",
+        "label": "Team and interpersonal practice"
+      },
+      {
+        "theme_id": "NDT33",
+        "label": "Work efficiency"
+      },
+      {
+        "theme_id": "NDT34",
+        "label": "Motivation and task attitude"
+      }
+    ]
+  },
+  "decisions": [
+    {
+      "decision_id": "D1",
+      "official_label": "Field importance and emerging opportunity",
+      "category": "Selection and goals",
+      "routable": true,
+      "source_definition_summary": "Identifies consequential questions, emerging directions, and openings created by recent advances.",
+      "research_translation": "Decide which research problem is worth attention before optimizing how to solve it.",
+      "common_research_contexts": [
+        "research agenda setting",
+        "topic selection",
+        "new capability assessment"
+      ],
+      "trigger_signals": [
+        "The request asks what to study next",
+        "Several plausible topics compete for attention",
+        "A new dataset, method, or result may change what is feasible"
+      ],
+      "required_state": [
+        "field scope",
+        "stakeholder or scientific value criteria",
+        "current evidence on gaps and trends"
+      ],
+      "observable_good_behaviors": [
+        "Separates importance from popularity",
+        "Names whose problem it is and what consequence would follow",
+        "Tests trend claims against primary or authoritative sources"
+      ],
+      "common_failure_modes": [
+        "Equates citation volume with importance",
+        "Selects a topic before defining value criteria",
+        "Treats a single recent paper as a field consensus"
+      ],
+      "confusable_with": [
+        "D2 asks whether an opportunity fits the solver",
+        "D27 asks implications after results exist"
+      ],
+      "method_modules_to_invoke": [
+        "literature_novelty",
+        "claims_implications_communication"
+      ],
+      "evidence_needed": [
+        "authoritative field agendas or primary literature",
+        "explicit value and tractability criteria",
+        "evidence that the claimed gap is current"
+      ],
+      "possible_next_actions": [
+        "compare candidate problem statements",
+        "run a bounded landscape scan",
+        "record why one question matters now"
+      ],
+      "revisit_conditions": [
+        "a major field result closes or opens the gap",
+        "stakeholder priorities change",
+        "feasibility evidence changes"
+      ],
+      "stop_or_abstain_conditions": [
+        "No defensible field boundary or value criterion can be established",
+        "The task would require unauthorized strategic or sensitive information"
+      ],
+      "do_not_infer": [
+        "Do not infer importance from novelty alone",
+        "Do not infer a gap from absence in a small search"
+      ],
+      "ai_ml_example": "Choose whether robustness under distribution shift is a higher-value target than another benchmark gain, using deployment failures and unresolved mechanisms as evidence.",
+      "counterexample": "The user already chose a fixed benchmark and only asks to format its results; agenda selection is not the current decision.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF pp. 5–6, Supplementary Text, item 1",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D2",
+      "official_label": "Solver–opportunity fit",
+      "category": "Selection and goals",
+      "routable": true,
+      "source_definition_summary": "Assesses whether a real opportunity is especially accessible given the solver's capabilities, perspective, and resources.",
+      "research_translation": "Match a research gap to the team’s comparative advantage without mistaking familiarity for value.",
+      "common_research_contexts": [
+        "project selection",
+        "team formation",
+        "make-or-partner decisions"
+      ],
+      "trigger_signals": [
+        "A gap is plausible but ownership is unclear",
+        "Execution depends on rare data, skills, or access",
+        "The team is choosing among opportunities"
+      ],
+      "required_state": [
+        "capability inventory",
+        "resource and access constraints",
+        "candidate opportunity list"
+      ],
+      "observable_good_behaviors": [
+        "Names capabilities and missing capabilities explicitly",
+        "Considers collaboration or acquisition instead of binary fit",
+        "Challenges status-quo assumptions with evidence"
+      ],
+      "common_failure_modes": [
+        "Confuses interest with competence",
+        "Rejects unfamiliar work without considering partners",
+        "Claims unique advantage without comparison"
+      ],
+      "confusable_with": [
+        "D1 concerns field importance",
+        "D9 concerns overall solvability and worth"
+      ],
+      "method_modules_to_invoke": [
+        "literature_novelty",
+        "experiment_design"
+      ],
+      "evidence_needed": [
+        "team skills and prior validated work",
+        "access to data, compute, participants, or facilities",
+        "credible alternatives for missing capabilities"
+      ],
+      "possible_next_actions": [
+        "build a capability-gap table",
+        "seek a collaborator or pilot",
+        "select the opportunity with a defensible access advantage"
+      ],
+      "revisit_conditions": [
+        "team composition or access changes",
+        "a pilot exposes an unrecognized capability gap",
+        "a competing group removes the timing advantage"
+      ],
+      "stop_or_abstain_conditions": [
+        "Critical capability or legal access cannot be obtained",
+        "Fit cannot be assessed without disclosing protected information"
+      ],
+      "do_not_infer": [
+        "Do not infer fit from credentials alone",
+        "Do not claim exclusivity from lack of visible competitors"
+      ],
+      "ai_ml_example": "A lab with longitudinal clinical labels evaluates a calibration question that public benchmark teams cannot test, while documenting missing causal-inference expertise.",
+      "counterexample": "Comparing two model architectures after the research question and team are fixed is not an expertise-opportunity decision.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 2",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D3",
+      "official_label": "Goals, scope, criteria, and constraints",
+      "category": "Selection and goals",
+      "routable": true,
+      "source_definition_summary": "Defines the goal, scope, requirements, constraints, and criteria by which a solution will be judged.",
+      "research_translation": "Turn a broad research request into a bounded, testable decision contract.",
+      "common_research_contexts": [
+        "project kickoff",
+        "protocol design",
+        "evaluation planning"
+      ],
+      "trigger_signals": [
+        "Success is described vaguely",
+        "Stakeholders use conflicting metrics",
+        "Permissions, time, or scope are undefined"
+      ],
+      "required_state": [
+        "user objective",
+        "stakeholder constraints",
+        "decision consequences"
+      ],
+      "observable_good_behaviors": [
+        "States in-scope and out-of-scope work",
+        "Defines measurable success and failure",
+        "Separates hard constraints from preferences"
+      ],
+      "common_failure_modes": [
+        "Optimizes an unstated metric",
+        "Changes criteria after observing results",
+        "Ignores authorization or ethical constraints"
+      ],
+      "confusable_with": [
+        "D14 orders work after criteria exist",
+        "D28 tailors communication to an audience"
+      ],
+      "method_modules_to_invoke": [
+        "experiment_design",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "explicit requirements and permissions",
+        "domain-appropriate evaluation criteria",
+        "resource and risk constraints"
+      ],
+      "possible_next_actions": [
+        "write a goal-and-criteria statement",
+        "resolve one blocking ambiguity",
+        "define acceptance and stop conditions"
+      ],
+      "revisit_conditions": [
+        "stakeholder objective changes",
+        "new constraints invalidate the scope",
+        "results expose metric–goal mismatch"
+      ],
+      "stop_or_abstain_conditions": [
+        "Required authority, ethics approval, or data rights are absent",
+        "No decision-relevant success criterion can be established"
+      ],
+      "do_not_infer": [
+        "Do not infer permission from technical access",
+        "Do not infer the true objective from a proxy metric"
+      ],
+      "ai_ml_example": "Define an ML study as improving patient-level AUROC without leakage, with subgroup calibration and a fixed compute budget as acceptance constraints.",
+      "counterexample": "Choosing whether to use a transformer or a tree model is a candidate-solution question, not goal definition.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 3",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D4",
+      "official_label": "Salient features and information",
+      "category": "Frame problem",
+      "routable": true,
+      "source_definition_summary": "Selects the underlying features, concepts, relevant information, and useful representations for the problem.",
+      "research_translation": "Decide what aspects of the system must be represented for reasoning to be valid.",
+      "common_research_contexts": [
+        "problem framing",
+        "feature definition",
+        "causal or mechanistic modeling"
+      ],
+      "trigger_signals": [
+        "Available variables are numerous but relevance is unclear",
+        "The current representation hides dependencies",
+        "Key domain concepts are missing"
+      ],
+      "required_state": [
+        "bounded problem statement",
+        "available information inventory",
+        "domain concepts or mechanism candidates"
+      ],
+      "observable_good_behaviors": [
+        "Explains why each feature is relevant",
+        "Separates observed variables from latent concepts",
+        "Uses a representation suited to the causal or predictive question"
+      ],
+      "common_failure_modes": [
+        "Uses all available columns without rationale",
+        "Treats representation as neutral",
+        "Drops inconvenient variables before checking bias"
+      ],
+      "confusable_with": [
+        "D17 reorganizes evidence already collected",
+        "D5 chooses relationships and predictive structure"
+      ],
+      "method_modules_to_invoke": [
+        "hypothesis_predictive_framework",
+        "analysis_anomaly"
+      ],
+      "evidence_needed": [
+        "domain knowledge with provenance",
+        "data dictionary and measurement process",
+        "candidate representations and their limitations"
+      ],
+      "possible_next_actions": [
+        "draw a system or causal map",
+        "select a minimal feature set with rationale",
+        "identify missing measurements"
+      ],
+      "revisit_conditions": [
+        "new evidence reveals an omitted mechanism",
+        "the representation fails predictive checks",
+        "measurement quality changes"
+      ],
+      "stop_or_abstain_conditions": [
+        "Core constructs cannot be measured or represented well enough for the claim",
+        "Feature use would violate rights or introduce unmitigable harm"
+      ],
+      "do_not_infer": [
+        "Do not infer causal importance from model feature importance",
+        "Do not treat a convenient proxy as the construct itself"
+      ],
+      "ai_ml_example": "Represent repeated patient measurements with patient, visit, and record levels before designing a model split.",
+      "counterexample": "Reformatting a completed results table for readability is D17 or D29, not problem framing.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 4",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D5",
+      "official_label": "Predictive framework choice",
+      "category": "Frame problem",
+      "routable": true,
+      "source_definition_summary": "Chooses or constructs a framework linking key features at the mechanism and structural level useful for prediction.",
+      "research_translation": "Select the explanatory or predictive structure that generates discriminating expectations.",
+      "common_research_contexts": [
+        "hypothesis formation",
+        "model-class selection",
+        "mechanism design"
+      ],
+      "trigger_signals": [
+        "Predictions are not derived from an explicit structure",
+        "Several mechanisms explain the same observation",
+        "The current framework is too coarse or too detailed"
+      ],
+      "required_state": [
+        "important features from D4",
+        "candidate relationships or mechanisms",
+        "intended prediction target"
+      ],
+      "observable_good_behaviors": [
+        "States assumptions and mechanism level",
+        "Derives observable predictions",
+        "Compares frameworks on discriminating consequences"
+      ],
+      "common_failure_modes": [
+        "Names an algorithm without a scientific model",
+        "Fits a framework only because it predicts well in-sample",
+        "Leaves assumptions implicit"
+      ],
+      "confusable_with": [
+        "D8 selects candidate solutions or interventions",
+        "D23 revisits an existing framework after new evidence"
+      ],
+      "method_modules_to_invoke": [
+        "hypothesis_predictive_framework",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "domain theory or prior findings",
+        "assumptions and predicted observables",
+        "comparative fit or falsification evidence"
+      ],
+      "possible_next_actions": [
+        "specify competing frameworks",
+        "derive preregistered predictions",
+        "choose a minimally sufficient mechanism level"
+      ],
+      "revisit_conditions": [
+        "new evidence violates a key prediction",
+        "assumptions no longer hold",
+        "an alternative framework explains anomalies better"
+      ],
+      "stop_or_abstain_conditions": [
+        "No framework yields testable or decision-relevant predictions",
+        "Framework selection would be pure post-hoc storytelling"
+      ],
+      "do_not_infer": [
+        "Do not equate predictive framework with software architecture",
+        "Do not infer mechanism from accuracy alone"
+      ],
+      "ai_ml_example": "Compare a shortcut-learning account with a robust-feature account and derive subgroup and perturbation predictions before training.",
+      "counterexample": "Selecting among three deployment thresholds is choosing candidate solutions under D8 or D22, not a predictive framework.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 5",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D6",
+      "official_label": "Research-question narrowing",
+      "category": "Frame problem",
+      "routable": true,
+      "source_definition_summary": "Narrows a broad problem into specific questions and hypotheses that can be investigated.",
+      "research_translation": "Choose the smallest research question whose answer would materially reduce uncertainty.",
+      "common_research_contexts": [
+        "question formulation",
+        "hypothesis refinement",
+        "pilot scoping"
+      ],
+      "trigger_signals": [
+        "The topic spans many causal paths or outcomes",
+        "No single experiment could answer the request",
+        "Claims are not falsifiable"
+      ],
+      "required_state": [
+        "broad goal",
+        "candidate questions or hypotheses",
+        "available resources and constraints"
+      ],
+      "observable_good_behaviors": [
+        "Produces a bounded unit of analysis and outcome",
+        "States falsifiable alternatives",
+        "Preserves connection to the broader goal"
+      ],
+      "common_failure_modes": [
+        "Narrows to what is easy rather than informative",
+        "Creates a yes/no question with no discriminating test",
+        "Silently changes the population or outcome"
+      ],
+      "confusable_with": [
+        "D11 decomposes an already bounded problem",
+        "D13 identifies information required to distinguish options"
+      ],
+      "method_modules_to_invoke": [
+        "hypothesis_predictive_framework",
+        "experiment_design"
+      ],
+      "evidence_needed": [
+        "candidate hypotheses",
+        "feasible measurement options",
+        "expected decision impact"
+      ],
+      "possible_next_actions": [
+        "write a precise research question",
+        "fix population, intervention/exposure, comparator, and outcome where applicable",
+        "select a pilot hypothesis"
+      ],
+      "revisit_conditions": [
+        "the narrowed question cannot distinguish alternatives",
+        "scope becomes infeasible",
+        "new evidence shifts the central uncertainty"
+      ],
+      "stop_or_abstain_conditions": [
+        "Any feasible narrowing would no longer answer the stated goal",
+        "The only available question is non-falsifiable"
+      ],
+      "do_not_infer": [
+        "Do not infer that narrower always means better",
+        "Do not discard important populations merely for convenience"
+      ],
+      "ai_ml_example": "Narrow ‘make language models safer’ to whether a specific intervention reduces refusal drift under a predefined adversarial distribution.",
+      "counterexample": "Splitting model training, evaluation, and documentation into work packages is D11 decomposition.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 6",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D7",
+      "official_label": "Transfer from related work",
+      "category": "Frame problem",
+      "routable": true,
+      "source_definition_summary": "Identifies prior problems or work whose solution process or result may transfer to the present context.",
+      "research_translation": "Use literature and experience to find analogies while testing whether their assumptions transfer.",
+      "common_research_contexts": [
+        "literature review",
+        "method transfer",
+        "baseline selection"
+      ],
+      "trigger_signals": [
+        "The problem resembles known tasks",
+        "A method is proposed by analogy",
+        "Novelty or baseline adequacy is uncertain"
+      ],
+      "required_state": [
+        "current problem representation",
+        "search scope",
+        "transfer criteria"
+      ],
+      "observable_good_behaviors": [
+        "Separates surface similarity from structural similarity",
+        "Tracks exact versions and sources",
+        "Records what does and does not transfer"
+      ],
+      "common_failure_modes": [
+        "Copies a fashionable method without checking assumptions",
+        "Calls a problem novel after a shallow search",
+        "Counts mirrors as corroboration"
+      ],
+      "confusable_with": [
+        "D1 assesses field importance",
+        "D24 asks whether new knowledge is needed after reflection"
+      ],
+      "method_modules_to_invoke": [
+        "literature_novelty",
+        "hypothesis_predictive_framework"
+      ],
+      "evidence_needed": [
+        "primary literature or authoritative records",
+        "comparable datasets, mechanisms, and evaluation settings",
+        "negative or conflicting prior work"
+      ],
+      "possible_next_actions": [
+        "construct a related-work taxonomy",
+        "identify transferable components",
+        "select a reproducible baseline"
+      ],
+      "revisit_conditions": [
+        "a new close analogue is found",
+        "transfer assumptions fail",
+        "novelty claims change"
+      ],
+      "stop_or_abstain_conditions": [
+        "The needed literature cannot be lawfully accessed or verified",
+        "Transfer would rely on materially incompatible settings"
+      ],
+      "do_not_infer": [
+        "Do not infer novelty from search failure",
+        "Do not treat multiple pages for one work as independent sources"
+      ],
+      "ai_ml_example": "Compare prior domain-generalization studies by shift mechanism rather than merely reusing the most cited benchmark.",
+      "counterexample": "Checking whether a newly collected result is reliable is D18, not related-work search.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 7",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D8",
+      "official_label": "Candidate solution generation",
+      "category": "Frame problem",
+      "routable": true,
+      "source_definition_summary": "Generates plausible candidate solutions consistent with the identified key features and criteria.",
+      "research_translation": "Create competing interventions, models, explanations, or designs before committing to one.",
+      "common_research_contexts": [
+        "solution ideation",
+        "model or intervention selection",
+        "design-space exploration"
+      ],
+      "trigger_signals": [
+        "Only one solution is being considered",
+        "The current option fails a criterion",
+        "Evidence permits multiple responses"
+      ],
+      "required_state": [
+        "goals and criteria",
+        "problem features",
+        "predictive framework or domain constraints"
+      ],
+      "observable_good_behaviors": [
+        "Generates meaningfully distinct alternatives",
+        "Includes a credible null or status-quo option",
+        "Links each option to expected outcomes"
+      ],
+      "common_failure_modes": [
+        "Produces cosmetic variants of one idea",
+        "Excludes inconvenient alternatives",
+        "Chooses before evidence is specified"
+      ],
+      "confusable_with": [
+        "D5 chooses the structure that makes predictions",
+        "D22 evaluates and refines candidates using accumulated evidence"
+      ],
+      "method_modules_to_invoke": [
+        "hypothesis_predictive_framework",
+        "challenge_try_to_break"
+      ],
+      "evidence_needed": [
+        "design criteria",
+        "candidate mechanism or intervention descriptions",
+        "known feasibility and failure modes"
+      ],
+      "possible_next_actions": [
+        "create an alternatives table",
+        "add a null or simpler candidate",
+        "derive differentiating tests"
+      ],
+      "revisit_conditions": [
+        "all candidates fail",
+        "new constraints appear",
+        "evidence supports a previously excluded class"
+      ],
+      "stop_or_abstain_conditions": [
+        "No candidate can meet hard safety or feasibility constraints",
+        "Candidate generation would facilitate disallowed harm"
+      ],
+      "do_not_infer": [
+        "Do not infer that more candidates imply better coverage",
+        "Do not treat a predictive framework as the solution itself"
+      ],
+      "ai_ml_example": "Compare data augmentation, invariant-risk training, and a no-intervention baseline as distinct responses to shortcut learning.",
+      "counterexample": "Choosing a causal graph that explains shortcut formation is D5, even if it later informs an intervention.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 8",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D9",
+      "official_label": "Feasibility and pursuit value",
+      "category": "Frame problem",
+      "routable": true,
+      "source_definition_summary": "Judges whether the problem is plausibly solvable and worth pursuing given difficulty, constraints, risk, and uncertainty.",
+      "research_translation": "Make an explicit continue, pilot, pivot, or stop decision before costly execution.",
+      "common_research_contexts": [
+        "feasibility gate",
+        "go/no-go review",
+        "research portfolio triage"
+      ],
+      "trigger_signals": [
+        "Critical resources may be unavailable",
+        "The expected value is uncertain",
+        "Risks or costs dominate the plausible gain"
+      ],
+      "required_state": [
+        "goal and constraints",
+        "candidate solution path",
+        "feasibility and risk evidence"
+      ],
+      "observable_good_behaviors": [
+        "Separates technical feasibility from worth",
+        "Uses a bounded pilot to resolve uncertainty",
+        "Records stop and pivot conditions"
+      ],
+      "common_failure_modes": [
+        "Continues because of sunk cost",
+        "Declares impossible from one failed attempt",
+        "Ignores safety or opportunity cost"
+      ],
+      "confusable_with": [
+        "D2 assesses fit to a particular solver",
+        "D25 evaluates whether an ongoing approach is working"
+      ],
+      "method_modules_to_invoke": [
+        "experiment_design",
+        "challenge_try_to_break"
+      ],
+      "evidence_needed": [
+        "resource and permission checks",
+        "pilot or analogous feasibility data",
+        "risk and expected-impact analysis"
+      ],
+      "possible_next_actions": [
+        "run a minimum feasibility pilot",
+        "pivot scope",
+        "stop and document why"
+      ],
+      "revisit_conditions": [
+        "new resources or methods appear",
+        "pilot evidence changes feasibility",
+        "risk tolerance or value changes"
+      ],
+      "stop_or_abstain_conditions": [
+        "Hard permission, safety, or physical feasibility gate fails",
+        "Expected learning cannot justify the cost or harm"
+      ],
+      "do_not_infer": [
+        "Do not infer impossibility from absence of a known method",
+        "Do not infer worth from feasibility alone"
+      ],
+      "ai_ml_example": "Before a full foundation-model run, test whether the signal survives on a smaller model and whether compute and data licenses permit scaling.",
+      "counterexample": "Selecting which analysis to run on already collected data is D16.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 9",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D10",
+      "official_label": "Tractable approximations",
+      "category": "Plan process",
+      "routable": true,
+      "source_definition_summary": "Chooses simplifications that make the problem tractable and tests them against established criteria.",
+      "research_translation": "Decide prospectively what detail may be omitted without invalidating the research decision.",
+      "common_research_contexts": [
+        "model reduction",
+        "pilot design",
+        "simulation abstraction"
+      ],
+      "trigger_signals": [
+        "Full fidelity is infeasible",
+        "A proxy or subset is proposed",
+        "Complexity obscures the decisive test"
+      ],
+      "required_state": [
+        "goal and validity criteria",
+        "full problem features",
+        "candidate approximations"
+      ],
+      "observable_good_behaviors": [
+        "States each approximation and expected effect",
+        "Tests it against validity criteria",
+        "Retains a route to increase fidelity"
+      ],
+      "common_failure_modes": [
+        "Uses convenience samples without scope limits",
+        "Treats a proxy as exact",
+        "Introduces simplifications after seeing results"
+      ],
+      "confusable_with": [
+        "D23 re-evaluates earlier assumptions or simplifications after new evidence",
+        "D5 chooses the predictive structure"
+      ],
+      "method_modules_to_invoke": [
+        "hypothesis_predictive_framework",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "sensitivity or fidelity checks",
+        "domain bounds on approximation error",
+        "criteria the simplification must preserve"
+      ],
+      "possible_next_actions": [
+        "document assumptions",
+        "run a sensitivity comparison",
+        "choose the least complex adequate representation"
+      ],
+      "revisit_conditions": [
+        "new evidence exceeds approximation bounds",
+        "an anomaly appears near a simplification",
+        "downstream claims expand"
+      ],
+      "stop_or_abstain_conditions": [
+        "No tractable approximation preserves the decision-relevant property",
+        "Approximation error cannot be bounded"
+      ],
+      "do_not_infer": [
+        "Do not infer that a small pilot generalizes to full scale",
+        "Do not hide simplification in implementation detail"
+      ],
+      "ai_ml_example": "Use a smaller model for mechanism smoke tests only after defining which scaling-dependent claims it cannot support.",
+      "counterexample": "After a failed full run, reconsidering whether the small-model proxy was valid is D23.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 6, item 10",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D11",
+      "official_label": "Subproblem decomposition",
+      "category": "Plan process",
+      "routable": true,
+      "source_definition_summary": "Breaks a problem into tractable pieces with their own sub-goals and interfaces.",
+      "research_translation": "Choose a decomposition that permits independent progress without losing cross-part dependencies.",
+      "common_research_contexts": [
+        "research program planning",
+        "complex system analysis",
+        "multi-stage experiments"
+      ],
+      "trigger_signals": [
+        "No single action can resolve the problem",
+        "Work has separable uncertainty clusters",
+        "Dependencies are causing coordination failure"
+      ],
+      "required_state": [
+        "bounded problem",
+        "candidate components",
+        "dependency map"
+      ],
+      "observable_good_behaviors": [
+        "Defines sub-goals and interfaces",
+        "Marks coupled components",
+        "Preserves an integration test"
+      ],
+      "common_failure_modes": [
+        "Confuses a task list with conceptual decomposition",
+        "Optimizes parts without system criteria",
+        "Hides the hardest dependency between parts"
+      ],
+      "confusable_with": [
+        "D6 narrows the research question",
+        "D14 prioritizes among already defined tasks"
+      ],
+      "method_modules_to_invoke": [
+        "experiment_design",
+        "hypothesis_predictive_framework"
+      ],
+      "evidence_needed": [
+        "dependency structure",
+        "subproblem-specific success criteria",
+        "integration risks"
+      ],
+      "possible_next_actions": [
+        "draw a dependency graph",
+        "define independent work packages",
+        "plan an integration checkpoint"
+      ],
+      "revisit_conditions": [
+        "subproblems prove inseparable",
+        "integration fails",
+        "a bottleneck moves"
+      ],
+      "stop_or_abstain_conditions": [
+        "Decomposition would destroy the phenomenon being studied",
+        "Interfaces cannot be specified sufficiently"
+      ],
+      "do_not_infer": [
+        "Do not infer independence from organizational separation",
+        "Do not treat sequential steps as independent subproblems by default"
+      ],
+      "ai_ml_example": "Separate data leakage audit, baseline reproduction, intervention test, and subgroup evaluation while retaining one patient-level split contract.",
+      "counterexample": "Selecting only one subgroup as the entire research scope is D6 narrowing, not decomposition.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF pp. 6–7, item 11",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D12",
+      "official_label": "Critical difficulty and uncertainty",
+      "category": "Plan process",
+      "routable": true,
+      "source_definition_summary": "Identifies the parts of a solving plan with the greatest difficulty or uncertainty and acceptable uncertainty at each stage.",
+      "research_translation": "Locate the uncertainty bottleneck that most threatens valid progress.",
+      "common_research_contexts": [
+        "risk review",
+        "pilot selection",
+        "uncertainty management"
+      ],
+      "trigger_signals": [
+        "Many unknowns compete",
+        "A plan has fragile dependencies",
+        "Acceptable uncertainty is unstated"
+      ],
+      "required_state": [
+        "current plan",
+        "uncertainty register",
+        "stage-specific tolerance"
+      ],
+      "observable_good_behaviors": [
+        "Distinguishes epistemic from operational uncertainty",
+        "Identifies the downstream consequence of each uncertainty",
+        "Defines when uncertainty is acceptable"
+      ],
+      "common_failure_modes": [
+        "Prioritizes the loudest concern",
+        "Uses confidence words without evidence",
+        "Ignores correlated uncertainties"
+      ],
+      "confusable_with": [
+        "D14 chooses what to do first using multiple considerations",
+        "D24 reflects on whether knowledge is sufficient"
+      ],
+      "method_modules_to_invoke": [
+        "experiment_design",
+        "challenge_try_to_break"
+      ],
+      "evidence_needed": [
+        "uncertainty sources and bounds",
+        "dependency and consequence analysis",
+        "available information-gain actions"
+      ],
+      "possible_next_actions": [
+        "rank uncertainty qualitatively",
+        "design a discriminating pilot",
+        "set an uncertainty threshold"
+      ],
+      "revisit_conditions": [
+        "an uncertainty is resolved or worsens",
+        "a dependency changes",
+        "new failure evidence appears"
+      ],
+      "stop_or_abstain_conditions": [
+        "Critical uncertainty cannot be reduced or bounded before irreversible action",
+        "The uncertainty estimate would be fabricated"
+      ],
+      "do_not_infer": [
+        "Do not infer low uncertainty from agreement among dependent sources",
+        "Do not convert ordinal judgments into unsupported probabilities"
+      ],
+      "ai_ml_example": "Identify whether label noise or distribution shift is the main threat before spending compute on architecture search.",
+      "counterexample": "Choosing the next task because it is cheapest, with uncertainties already known, is D14 priority setting.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 12",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D13",
+      "official_label": "Decision-changing information requirements",
+      "category": "Plan process",
+      "routable": true,
+      "source_definition_summary": "Specifies the information sufficient to solve the problem or distinguish candidate solutions.",
+      "research_translation": "Define prospectively the evidence that would change the current research choice.",
+      "common_research_contexts": [
+        "evidence planning",
+        "hypothesis discrimination",
+        "measurement design"
+      ],
+      "trigger_signals": [
+        "Alternatives cannot yet be separated",
+        "A claim lacks a decisive observable",
+        "The next data request is vague"
+      ],
+      "required_state": [
+        "candidate alternatives",
+        "decision criteria",
+        "current evidence gaps"
+      ],
+      "observable_good_behaviors": [
+        "Names discriminating observations",
+        "Defines sufficiency before collection",
+        "Connects each datum to a decision"
+      ],
+      "common_failure_modes": [
+        "Collects more data without a decision link",
+        "Requests every available variable",
+        "Defines sufficiency after seeing results"
+      ],
+      "confusable_with": [
+        "D24 is reflective and asks whether additional knowledge is needed after reviewing the current state",
+        "D15 specifies how to obtain already identified information"
+      ],
+      "method_modules_to_invoke": [
+        "literature_novelty",
+        "experiment_design",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "alternative-specific predictions",
+        "measurement validity",
+        "value-of-information rationale"
+      ],
+      "possible_next_actions": [
+        "write an evidence requirement",
+        "select the highest-information measurement",
+        "define a sufficiency criterion"
+      ],
+      "revisit_conditions": [
+        "candidate alternatives change",
+        "measurement validity fails",
+        "new evidence leaves options tied"
+      ],
+      "stop_or_abstain_conditions": [
+        "No observable evidence can distinguish the alternatives",
+        "Required information cannot be collected ethically or lawfully"
+      ],
+      "do_not_infer": [
+        "Do not infer that more information is always useful",
+        "Do not route to D24 without explicit re-review of knowledge state"
+      ],
+      "ai_ml_example": "Before comparing two robustness mechanisms, specify which perturbation and subgroup outcomes would distinguish them.",
+      "counterexample": "After surprising results reveal a missing domain fact, deciding whether to learn or recheck it is D24.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 13",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D14",
+      "official_label": "Action and resource priority",
+      "category": "Plan process",
+      "routable": true,
+      "source_definition_summary": "Chooses what to do first among competing considerations and how to allocate necessary resources.",
+      "research_translation": "Order actions using blocking impact, uncertainty reduction, constraints, cost, and reversibility.",
+      "common_research_contexts": [
+        "next-action selection",
+        "resource allocation",
+        "portfolio sequencing"
+      ],
+      "trigger_signals": [
+        "Several valid actions compete",
+        "Resources cannot cover all work",
+        "A bottleneck blocks downstream tasks"
+      ],
+      "required_state": [
+        "candidate actions",
+        "dependencies",
+        "constraints and resource inventory"
+      ],
+      "observable_good_behaviors": [
+        "Explains priority with ordinal trade-offs",
+        "Addresses blockers before polish",
+        "Keeps reversible probes ahead of irreversible commitments when informative"
+      ],
+      "common_failure_modes": [
+        "Uses an unexplained numeric score",
+        "Prioritizes easy work over consequential uncertainty",
+        "Ignores resource acquisition"
+      ],
+      "confusable_with": [
+        "D12 identifies uncertainty hotspots",
+        "D15 designs the information-acquisition plan"
+      ],
+      "method_modules_to_invoke": [
+        "experiment_design",
+        "literature_novelty"
+      ],
+      "evidence_needed": [
+        "dependency and risk information",
+        "qualitative information gain",
+        "cost and reversibility"
+      ],
+      "possible_next_actions": [
+        "select one primary next action",
+        "reserve up to two secondary actions",
+        "obtain a critical resource"
+      ],
+      "revisit_conditions": [
+        "a blocker clears",
+        "cost or resource availability changes",
+        "new evidence shifts expected information gain"
+      ],
+      "stop_or_abstain_conditions": [
+        "No authorized action can address the blocker",
+        "All actions are dominated by a safer or cheaper alternative"
+      ],
+      "do_not_infer": [
+        "Do not sum invented scores",
+        "Do not infer priority from recency or stakeholder volume alone"
+      ],
+      "ai_ml_example": "Reproduce the strongest baseline before running ablations because every later comparison depends on it.",
+      "counterexample": "Determining that leakage is the dominant uncertainty is D12; ordering the leakage audit first is D14.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 14",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D15",
+      "official_label": "Information acquisition plan",
+      "category": "Plan process",
+      "routable": true,
+      "source_definition_summary": "Designs and carries out a concrete information-gathering approach with milestones, metrics, and contingent paths.",
+      "research_translation": "Convert an evidence need into an executable, branching research protocol.",
+      "common_research_contexts": [
+        "experiment protocol",
+        "literature search plan",
+        "simulation or expert-elicitation plan"
+      ],
+      "trigger_signals": [
+        "Needed evidence is known but acquisition is unspecified",
+        "Milestones or fallback paths are missing",
+        "A tool choice must match the evidence need"
+      ],
+      "required_state": [
+        "information requirement from D13 or D24",
+        "resources and constraints",
+        "candidate methods"
+      ],
+      "observable_good_behaviors": [
+        "Specifies method, inputs, milestones, and decision rules",
+        "Plans for alternative outcomes",
+        "Keeps collection aligned to the needed evidence"
+      ],
+      "common_failure_modes": [
+        "Lists tools without a protocol",
+        "Executes before fixing analysis choices",
+        "Has no response to null or unexpected results"
+      ],
+      "confusable_with": [
+        "D13 defines what information is needed",
+        "D16 chooses calculations and analysis for obtained information"
+      ],
+      "method_modules_to_invoke": [
+        "literature_novelty",
+        "experiment_design",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "method validity",
+        "resource availability",
+        "predefined outcome branches"
+      ],
+      "possible_next_actions": [
+        "write and freeze a protocol",
+        "execute a bounded search or pilot",
+        "define milestone and fallback paths"
+      ],
+      "revisit_conditions": [
+        "method fails to obtain valid information",
+        "cost exceeds limits",
+        "an unplanned outcome occurs"
+      ],
+      "stop_or_abstain_conditions": [
+        "The acquisition method lacks permission or acceptable risk",
+        "No method can produce decision-relevant evidence"
+      ],
+      "do_not_infer": [
+        "Do not infer evidence quality from procedural completeness",
+        "Do not collect data before resolving leakage-critical choices"
+      ],
+      "ai_ml_example": "Freeze patient-level splits, baseline, seeds, metrics, and null-result branches before launching an ML experiment.",
+      "counterexample": "Choosing which statistical model to apply after data collection is D16.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 15",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D16",
+      "official_label": "Decision-aligned analysis",
+      "category": "Interpret information and choose solutions",
+      "routable": true,
+      "source_definition_summary": "Chooses and performs calculations or analyses needed to interpret the available data.",
+      "research_translation": "Select an analysis whose estimand, assumptions, and uncertainty match the research decision.",
+      "common_research_contexts": [
+        "statistical analysis",
+        "simulation analysis",
+        "quantitative evidence synthesis"
+      ],
+      "trigger_signals": [
+        "Data exist but the decision-relevant estimate is missing",
+        "Several analyses imply different estimands",
+        "Uncertainty is not quantified"
+      ],
+      "required_state": [
+        "data provenance",
+        "research question or estimand",
+        "analysis assumptions"
+      ],
+      "observable_good_behaviors": [
+        "Defines the estimand before the method",
+        "Matches analysis to design and grouping",
+        "Reports uncertainty and sensitivity"
+      ],
+      "common_failure_modes": [
+        "Chooses tests by software availability",
+        "Treats repeated records as independent",
+        "Tunes analysis after observing significance"
+      ],
+      "confusable_with": [
+        "D17 concerns representation and organization",
+        "D21 determines justified conclusions"
+      ],
+      "method_modules_to_invoke": [
+        "analysis_anomaly",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "validated data and design metadata",
+        "assumption diagnostics",
+        "analysis protocol"
+      ],
+      "possible_next_actions": [
+        "run the matched analysis",
+        "perform sensitivity checks",
+        "record code, versions, and outputs"
+      ],
+      "revisit_conditions": [
+        "assumptions fail",
+        "anomaly investigation changes data validity",
+        "new evidence changes the estimand"
+      ],
+      "stop_or_abstain_conditions": [
+        "Data provenance or design is too weak for the proposed analysis",
+        "Only outcome-driven analysis choices remain"
+      ],
+      "do_not_infer": [
+        "Do not infer causality from an unmatched analysis",
+        "Do not treat statistical significance as practical importance"
+      ],
+      "ai_ml_example": "Estimate patient-level performance with grouped bootstrap intervals rather than treating repeated visits as independent.",
+      "counterexample": "Deciding how to visualize subgroup trade-offs is D17.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 16",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D17",
+      "official_label": "Evidence representation and organization",
+      "category": "Interpret information and choose solutions",
+      "routable": true,
+      "source_definition_summary": "Chooses a representation and organization of evidence that creates clarity and reveals useful structure.",
+      "research_translation": "Arrange collected information so comparisons, dependencies, and anomalies become inspectable.",
+      "common_research_contexts": [
+        "evidence tables",
+        "causal diagrams",
+        "error taxonomy",
+        "result visualization"
+      ],
+      "trigger_signals": [
+        "Evidence is fragmented",
+        "Important comparisons are hard to see",
+        "A technical representation may reveal structure"
+      ],
+      "required_state": [
+        "collected evidence",
+        "audience for internal reasoning",
+        "key variables or relationships"
+      ],
+      "observable_good_behaviors": [
+        "Preserves provenance and uncertainty",
+        "Uses a representation aligned with the predictive framework",
+        "Makes missing and conflicting evidence visible"
+      ],
+      "common_failure_modes": [
+        "Uses a visually persuasive but misleading chart",
+        "Aggregates away critical subgroups",
+        "Loses source identity during summarization"
+      ],
+      "confusable_with": [
+        "D4 selects important concepts while framing",
+        "D29 chooses final presentation for communication",
+        "D21 judges what conclusions the evidence supports",
+        "D22 selects among candidate solutions; organizing their evidence is only a supporting action"
+      ],
+      "method_modules_to_invoke": [
+        "analysis_anomaly",
+        "claims_implications_communication"
+      ],
+      "evidence_needed": [
+        "traceable data or source records",
+        "comparison dimensions",
+        "representation limitations"
+      ],
+      "possible_next_actions": [
+        "build a claim–evidence matrix",
+        "create an error taxonomy",
+        "draw a dependency or causal diagram"
+      ],
+      "revisit_conditions": [
+        "the representation hides a contradiction",
+        "audience or decision changes",
+        "new evidence adds a missing dimension"
+      ],
+      "stop_or_abstain_conditions": [
+        "Any available representation would expose restricted data",
+        "Aggregation would make the decision materially misleading"
+      ],
+      "do_not_infer": [
+        "Do not infer truth from visual coherence",
+        "Do not erase null or opposing evidence",
+        "Do not make D17 primary when representation is only a supporting step for an unresolved analysis, anomaly, conclusion, or selection decision"
+      ],
+      "ai_ml_example": "Organize model errors by subgroup, shift type, and seed with links to raw runs so an anomaly cluster becomes visible.",
+      "counterexample": "Choosing which variables are conceptually part of the problem before collection is D4.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 17",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D18",
+      "official_label": "Evidence credibility and bias",
+      "category": "Interpret information and choose solutions",
+      "routable": true,
+      "source_definition_summary": "Evaluates whether information is valid, reliable, credible, and affected by bias.",
+      "research_translation": "Audit source identity, provenance, measurement, leakage, dependence, and bias before using evidence.",
+      "common_research_contexts": [
+        "source verification",
+        "data quality review",
+        "replication assessment",
+        "ML leakage audit"
+      ],
+      "trigger_signals": [
+        "A key claim rests on uncertain evidence",
+        "Results are unusually strong",
+        "Sources may be aliases or dependent"
+      ],
+      "required_state": [
+        "evidence ledger",
+        "provenance and measurement details",
+        "claim–evidence links"
+      ],
+      "observable_good_behaviors": [
+        "Checks validity separately from relevance",
+        "Deduplicates aliases and shared studies",
+        "Actively seeks counterevidence and bias"
+      ],
+      "common_failure_modes": [
+        "Counts mirrors as corroboration",
+        "Accepts a landing page as verified full text",
+        "Trusts benchmark scores without split audit"
+      ],
+      "confusable_with": [
+        "D21 decides what conclusion follows after credibility is assessed",
+        "D20 investigates a particular deviation from expectation"
+      ],
+      "method_modules_to_invoke": [
+        "ai_ml_evidence_integrity",
+        "literature_novelty",
+        "challenge_try_to_break"
+      ],
+      "evidence_needed": [
+        "primary or authoritative records",
+        "provenance, version, and access status",
+        "independence and bias assessment"
+      ],
+      "possible_next_actions": [
+        "verify the source or run",
+        "audit leakage and measurement",
+        "downgrade or quarantine unreliable evidence"
+      ],
+      "revisit_conditions": [
+        "source status changes",
+        "replication conflicts",
+        "a correction or alias is discovered"
+      ],
+      "stop_or_abstain_conditions": [
+        "A critical claim has no verifiable evidence",
+        "Evidence use would violate license, privacy, or authorization"
+      ],
+      "do_not_infer": [
+        "Do not infer credibility from prestige alone",
+        "Do not infer independent support from multiple URLs",
+        "Do not jump to a conclusion before D21"
+      ],
+      "ai_ml_example": "Detect that two reported robustness gains use the same underlying dataset and that one evaluation split leaks patient identity.",
+      "counterexample": "After evidence is verified, deciding whether it supports a scoped claim is D21.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 18",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D19",
+      "official_label": "Prediction–observation comparison",
+      "category": "Interpret information and choose solutions",
+      "routable": true,
+      "source_definition_summary": "Compares new experimental or calculated information with expectations derived from the predictive framework.",
+      "research_translation": "Test whether observed results match each competing framework’s preregistered predictions.",
+      "common_research_contexts": [
+        "hypothesis testing",
+        "model checking",
+        "experiment interpretation"
+      ],
+      "trigger_signals": [
+        "New results arrive",
+        "A prediction was registered",
+        "Competing explanations make different forecasts"
+      ],
+      "required_state": [
+        "versioned predictions",
+        "observed results with uncertainty",
+        "predictive framework identifiers"
+      ],
+      "observable_good_behaviors": [
+        "Compares against pre-specified predictions",
+        "Includes null and competing frameworks",
+        "Distinguishes magnitude from direction"
+      ],
+      "common_failure_modes": [
+        "Rewrites predictions after seeing data",
+        "Compares only to a weak null",
+        "Calls any mismatch a discovery"
+      ],
+      "confusable_with": [
+        "D20 decides whether and how to follow an anomaly",
+        "D23 revisits the framework or assumptions"
+      ],
+      "method_modules_to_invoke": [
+        "hypothesis_predictive_framework",
+        "analysis_anomaly"
+      ],
+      "evidence_needed": [
+        "time-stamped predictions",
+        "valid observations",
+        "uncertainty and tolerance bounds"
+      ],
+      "possible_next_actions": [
+        "construct a prediction–observation table",
+        "quantify deviations",
+        "trigger D20 or D23 when warranted"
+      ],
+      "revisit_conditions": [
+        "new runs change the comparison",
+        "prediction version is found ambiguous",
+        "measurement validity changes"
+      ],
+      "stop_or_abstain_conditions": [
+        "No prior prediction can be reconstructed without hindsight",
+        "Observed data are not credible enough for comparison"
+      ],
+      "do_not_infer": [
+        "Do not infer framework truth from one match",
+        "Do not retrofit an expectation to the result"
+      ],
+      "ai_ml_example": "Compare subgroup calibration shifts to the directional predictions of two competing shortcut-learning mechanisms.",
+      "counterexample": "Checking whether the subgroup labels themselves are reliable is D18.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 7, item 19",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D20",
+      "official_label": "Anomaly triage and follow-up",
+      "category": "Interpret information and choose solutions",
+      "routable": true,
+      "source_definition_summary": "Determines whether an unexpected result is meaningful and selects an appropriate follow-up.",
+      "research_translation": "Triage deviations as expected variation, data or analysis defects, framework limits, or informative anomalies.",
+      "common_research_contexts": [
+        "unexpected result review",
+        "outlier investigation",
+        "failed replication"
+      ],
+      "trigger_signals": [
+        "Observed results differ from predictions",
+        "A metric is implausibly strong or unstable",
+        "A subgroup behaves differently"
+      ],
+      "required_state": [
+        "prediction comparison",
+        "uncertainty bounds",
+        "data and analysis provenance"
+      ],
+      "observable_good_behaviors": [
+        "First verifies the anomaly",
+        "Checks statistical and practical significance",
+        "Plans discriminating follow-up rather than deleting it"
+      ],
+      "common_failure_modes": [
+        "Removes outliers post hoc",
+        "Treats noise as discovery",
+        "Explains every anomaly with the preferred theory"
+      ],
+      "confusable_with": [
+        "D18 audits general evidence credibility",
+        "D19 performs the comparison that reveals a deviation"
+      ],
+      "method_modules_to_invoke": [
+        "analysis_anomaly",
+        "ai_ml_evidence_integrity",
+        "challenge_try_to_break"
+      ],
+      "evidence_needed": [
+        "replication or rerun",
+        "sensitivity and influence analysis",
+        "framework tolerance and assumptions"
+      ],
+      "possible_next_actions": [
+        "reproduce and localize the deviation",
+        "check data and pipeline defects",
+        "design a discriminating follow-up"
+      ],
+      "revisit_conditions": [
+        "the anomaly replicates or disappears",
+        "new bounds change significance",
+        "a framework revision is proposed"
+      ],
+      "stop_or_abstain_conditions": [
+        "Investigating would require unauthorized access or unsafe experimentation",
+        "The anomaly cannot be distinguished from measurement failure"
+      ],
+      "do_not_infer": [
+        "Do not infer novelty from surprise",
+        "Do not erase unexpected evidence without a trace"
+      ],
+      "ai_ml_example": "Investigate a single seed’s exceptional score by rerunning, checking split hashes, and testing whether a preprocessing cache leaked labels.",
+      "counterexample": "A broad source-quality audit before any anomaly appears is D18.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF pp. 7–8, item 20",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D21",
+      "official_label": "Evidence-calibrated conclusions",
+      "category": "Interpret information and choose solutions",
+      "routable": true,
+      "source_definition_summary": "Determines which conclusions are justified by the available data and their limitations.",
+      "research_translation": "Calibrate each claim to the design, evidence strength, uncertainty, and scope.",
+      "common_research_contexts": [
+        "result interpretation",
+        "claim drafting",
+        "evidence synthesis"
+      ],
+      "trigger_signals": [
+        "Results must be converted into claims",
+        "A claim exceeds the design",
+        "Conflicting evidence must be reconciled"
+      ],
+      "required_state": [
+        "credibility assessment from D18",
+        "analysis results",
+        "goal and scope criteria"
+      ],
+      "observable_good_behaviors": [
+        "States supported, unsupported, and unresolved claims",
+        "Preserves uncertainty and population scope",
+        "Links every material claim to evidence"
+      ],
+      "common_failure_modes": [
+        "Converts association into causation",
+        "Hides null or opposing results",
+        "Treats non-significance as equivalence"
+      ],
+      "confusable_with": [
+        "D18 asks whether evidence is believable",
+        "D27 explores broader implications beyond the immediate conclusion"
+      ],
+      "method_modules_to_invoke": [
+        "analysis_anomaly",
+        "claims_implications_communication",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "verified evidence ledger",
+        "matched analysis with uncertainty",
+        "counterevidence and limitations"
+      ],
+      "possible_next_actions": [
+        "write a calibrated claim set",
+        "reject or narrow an unsupported claim",
+        "mark unresolved questions"
+      ],
+      "revisit_conditions": [
+        "evidence credibility changes",
+        "new data alter the estimate",
+        "scope or claim wording expands"
+      ],
+      "stop_or_abstain_conditions": [
+        "Critical evidence is invalid or missing",
+        "A conclusion would exceed what the design can identify"
+      ],
+      "do_not_infer": [
+        "Do not infer causality, generality, or safety beyond the evidence",
+        "Do not use credibility review as a substitute for claim calibration"
+      ],
+      "ai_ml_example": "Conclude that an intervention improved a fixed benchmark under specified shifts, while declining to claim real-world safety.",
+      "counterexample": "Determining whether the benchmark result was leaked or independently reproduced is D18.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 8, item 21",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D22",
+      "official_label": "Candidate solution selection",
+      "category": "Interpret information and choose solutions",
+      "routable": true,
+      "source_definition_summary": "Evaluates and refines candidate solutions against all available information; more than one may remain.",
+      "research_translation": "Select, reject, or refine candidates using explicit criteria and counterevidence.",
+      "common_research_contexts": [
+        "model selection",
+        "intervention choice",
+        "design convergence"
+      ],
+      "trigger_signals": [
+        "Evidence exists for multiple candidates",
+        "A preferred option needs refinement",
+        "A decision must be made under residual uncertainty"
+      ],
+      "required_state": [
+        "candidate solutions",
+        "criteria from D3",
+        "credible comparative evidence"
+      ],
+      "observable_good_behaviors": [
+        "Retains multiple options when evidence is tied",
+        "Explains rejection and refinement",
+        "Includes robustness and resource trade-offs"
+      ],
+      "common_failure_modes": [
+        "Selects on one headline metric",
+        "Declares a universal winner",
+        "Ignores simpler or safer candidates"
+      ],
+      "confusable_with": [
+        "D8 generates candidates before evaluation",
+        "D26 actively tries to break the chosen solution"
+      ],
+      "method_modules_to_invoke": [
+        "analysis_anomaly",
+        "challenge_try_to_break",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "comparative results on matched conditions",
+        "criteria and trade-offs",
+        "failure modes and uncertainty"
+      ],
+      "possible_next_actions": [
+        "select a provisional candidate",
+        "refine a candidate",
+        "keep a Pareto set or reject all"
+      ],
+      "revisit_conditions": [
+        "new comparative evidence arrives",
+        "criteria change",
+        "challenge tests expose a failure"
+      ],
+      "stop_or_abstain_conditions": [
+        "No candidate meets hard criteria",
+        "Comparisons are invalid or not commensurate"
+      ],
+      "do_not_infer": [
+        "Do not infer a single best solution when trade-offs remain",
+        "Do not select using test data tuning"
+      ],
+      "ai_ml_example": "Choose a simpler calibrated model over a marginally higher-AUROC model because it meets subgroup and deployment constraints.",
+      "counterexample": "Listing plausible models before comparative evidence is D8.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 8, item 22",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D23",
+      "official_label": "Assumption and framework reconsideration",
+      "category": "Reflect (ongoing)",
+      "routable": true,
+      "source_definition_summary": "Reconsiders whether earlier assumptions, simplifications, and predictive frameworks remain appropriate in light of new information.",
+      "research_translation": "Reopen prior framing choices when evidence activates their revisit conditions.",
+      "common_research_contexts": [
+        "model revision",
+        "post-pilot review",
+        "assumption audit"
+      ],
+      "trigger_signals": [
+        "New evidence violates an assumption",
+        "A simplification may explain an anomaly",
+        "Framework predictions repeatedly fail"
+      ],
+      "required_state": [
+        "versioned assumptions and simplifications",
+        "new evidence",
+        "original validity criteria"
+      ],
+      "observable_good_behaviors": [
+        "Names which prior choice is reopened and why",
+        "Tests alternatives rather than patching ad hoc",
+        "Supersedes records without deleting history"
+      ],
+      "common_failure_modes": [
+        "Defends the original framework through exceptions",
+        "Changes assumptions silently",
+        "Confuses planned simplification with reflective revision"
+      ],
+      "confusable_with": [
+        "D10 chooses approximations prospectively",
+        "D5 selects a predictive framework initially"
+      ],
+      "method_modules_to_invoke": [
+        "hypothesis_predictive_framework",
+        "ai_ml_evidence_integrity",
+        "challenge_try_to_break"
+      ],
+      "evidence_needed": [
+        "new prediction mismatches or sensitivity results",
+        "original assumption bounds",
+        "alternative framework implications"
+      ],
+      "possible_next_actions": [
+        "reopen D5 or D10",
+        "relax or replace an assumption",
+        "run a higher-fidelity test"
+      ],
+      "revisit_conditions": [
+        "new evidence tests the revision",
+        "further anomalies appear",
+        "the revised framework changes claims"
+      ],
+      "stop_or_abstain_conditions": [
+        "No test can distinguish revision from post-hoc accommodation",
+        "Changing assumptions would make the claim unfalsifiable"
+      ],
+      "do_not_infer": [
+        "Do not route here without new evidence or an activated revisit condition",
+        "Do not rewrite history; supersede it only after a replacement is accepted",
+        "Do not treat reopening or a temporary exception as automatic supersession",
+        "Do not use D23 as the default for an ordinary version change or operational hold that does not reopen an assumption or framework"
+      ],
+      "ai_ml_example": "After a scaling result reverses the small-model trend, reopen the assumption that mechanism behavior transfers across scale.",
+      "counterexample": "Choosing the small-model approximation before any result is D10.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 8, item 23",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D24",
+      "official_label": "Reflective knowledge-gap check",
+      "category": "Reflect (ongoing)",
+      "routable": true,
+      "source_definition_summary": "Reviews the solver’s current knowledge state to decide whether new information, learning, repetition, or cross-checking is needed.",
+      "research_translation": "After reflecting on current evidence and competence, decide what must be learned or rechecked.",
+      "common_research_contexts": [
+        "knowledge-gap review",
+        "post-anomaly reflection",
+        "replication decision"
+      ],
+      "trigger_signals": [
+        "Progress exposes a new concept gap",
+        "Existing information may need cross-checking",
+        "A prior plan proved insufficient"
+      ],
+      "required_state": [
+        "current knowledge inventory",
+        "decision trace showing what changed",
+        "evidence gaps"
+      ],
+      "observable_good_behaviors": [
+        "Provides explicit reflection evidence",
+        "Distinguishes learning from data collection",
+        "Names why prior information is insufficient"
+      ],
+      "common_failure_modes": [
+        "Routes every search request to reflection",
+        "Collects more information by habit",
+        "Masks a capability gap as data scarcity"
+      ],
+      "confusable_with": [
+        "D13 prospectively specifies information needed to distinguish alternatives",
+        "D2 assesses broader solver–opportunity fit"
+      ],
+      "method_modules_to_invoke": [
+        "literature_novelty",
+        "ai_ml_evidence_integrity"
+      ],
+      "evidence_needed": [
+        "state review and triggered gap",
+        "verification or replication need",
+        "knowledge-source plan"
+      ],
+      "possible_next_actions": [
+        "learn a bounded concept",
+        "check an independent source",
+        "repeat a critical measurement",
+        "return to D13 if a new evidence requirement is formed"
+      ],
+      "revisit_conditions": [
+        "the gap is resolved",
+        "cross-check conflicts",
+        "new knowledge changes the framework"
+      ],
+      "stop_or_abstain_conditions": [
+        "Required knowledge cannot be obtained or verified within constraints",
+        "Further searching has no decision link"
+      ],
+      "do_not_infer": [
+        "Do not infer D24 from ordinary information gathering; require explicit re-review",
+        "Do not count repeated access to the same source as new knowledge"
+      ],
+      "ai_ml_example": "After an unexplained calibration failure, recognize a missing understanding of prevalence shift and consult an independent methodological source.",
+      "counterexample": "Before any run, defining which labels are needed to distinguish two hypotheses is D13.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 8, item 24",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D25",
+      "official_label": "Strategy progress and pivot",
+      "category": "Reflect (ongoing)",
+      "routable": true,
+      "source_definition_summary": "Evaluates progress and decides whether the overall strategy or even the goals should change.",
+      "research_translation": "Use milestones and learning rate to continue, modify, pivot, or stop the research approach.",
+      "common_research_contexts": [
+        "progress review",
+        "strategy pivot",
+        "milestone gate"
+      ],
+      "trigger_signals": [
+        "Milestones are repeatedly missed",
+        "Actions yield little information",
+        "All live alternatives or proposed actions yield the same decision-relevant signal",
+        "The goal may no longer be appropriate"
+      ],
+      "required_state": [
+        "plan and milestones",
+        "decision trace",
+        "cost and progress evidence"
+      ],
+      "observable_good_behaviors": [
+        "Evaluates strategy, not personal effort",
+        "Uses predeclared pivot conditions",
+        "Considers goal revision explicitly",
+        "Preserves the failed or negative path when an honest post-hoc question or claim pivot is proposed"
+      ],
+      "common_failure_modes": [
+        "Continues because work has already been invested",
+        "Changes tactics without diagnosing the bottleneck",
+        "Uses activity as progress"
+      ],
+      "confusable_with": [
+        "D9 is initial or renewed solvability/worth assessment",
+        "D26 evaluates the solution rather than the strategy"
+      ],
+      "method_modules_to_invoke": [
+        "challenge_try_to_break",
+        "experiment_design"
+      ],
+      "evidence_needed": [
+        "milestone outcomes",
+        "information gained per action",
+        "resource burn and remaining uncertainty"
+      ],
+      "possible_next_actions": [
+        "continue with rationale",
+        "modify strategy",
+        "pivot goal",
+        "stop and preserve learning"
+      ],
+      "revisit_conditions": [
+        "next milestone completes",
+        "cost or constraints change",
+        "a new approach becomes available"
+      ],
+      "stop_or_abstain_conditions": [
+        "The approach cannot reach the goal within constraints",
+        "Continuing would violate a stop condition"
+      ],
+      "do_not_infer": [
+        "Do not infer approach quality from effort or volume",
+        "Do not delete dead ends from the trace"
+      ],
+      "ai_ml_example": "Pivot from architecture search to data audit after three controlled runs show no stable gain and error analysis points to label drift.",
+      "counterexample": "Testing whether the selected final model fails under adversarial perturbation is D26.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 8, item 25",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D26",
+      "official_label": "Solution stress test and adequacy",
+      "category": "Reflect (ongoing)",
+      "routable": true,
+      "source_definition_summary": "Assesses the adequacy of a candidate or selected solution by probing failure modes, discipline-specific checks, and goal coverage.",
+      "research_translation": "Try to break the solution before accepting it, and state its limits.",
+      "common_research_contexts": [
+        "robustness review",
+        "pre-release validation",
+        "solution audit"
+      ],
+      "trigger_signals": [
+        "A candidate appears successful",
+        "Acceptance is being considered",
+        "Known failure modes have not been tested"
+      ],
+      "required_state": [
+        "candidate solution",
+        "goals and criteria",
+        "failure-mode inventory"
+      ],
+      "observable_good_behaviors": [
+        "Runs adversarial and boundary tests",
+        "Checks all critical criteria",
+        "Reports limitations and unresolved failures"
+      ],
+      "common_failure_modes": [
+        "Tests only average performance",
+        "Treats plausibility as validation",
+        "Stops after confirming evidence"
+      ],
+      "confusable_with": [
+        "D22 selects among candidates",
+        "D25 evaluates the research strategy"
+      ],
+      "method_modules_to_invoke": [
+        "challenge_try_to_break",
+        "ai_ml_evidence_integrity",
+        "claims_implications_communication"
+      ],
+      "evidence_needed": [
+        "stress tests and negative controls",
+        "discipline-specific validity checks",
+        "criteria coverage"
+      ],
+      "possible_next_actions": [
+        "run try-to-break tests",
+        "narrow deployment or claim scope",
+        "reject or provisionally accept the solution"
+      ],
+      "revisit_conditions": [
+        "new deployment conditions arise",
+        "a failure report appears",
+        "criteria or solution changes"
+      ],
+      "stop_or_abstain_conditions": [
+        "A critical failure mode is untested or fails",
+        "Testing would impose unacceptable harm"
+      ],
+      "do_not_infer": [
+        "Do not infer safety from benchmark performance",
+        "Do not infer completeness from absence of observed failure"
+      ],
+      "ai_ml_example": "Probe a safety intervention under adaptive attacks, subgroup shifts, and seed variation before accepting it.",
+      "counterexample": "Choosing that intervention over another using existing comparison data is D22.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 8, item 26",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D27",
+      "official_label": "Bounded implications and next predictions",
+      "category": "Implications and communication",
+      "routable": true,
+      "source_definition_summary": "Examines where results apply, what outstanding problems they may affect, and what new predictions or interest they create.",
+      "research_translation": "Map a supported result to bounded implications and testable next questions.",
+      "common_research_contexts": [
+        "discussion writing",
+        "research agenda update",
+        "translation assessment"
+      ],
+      "trigger_signals": [
+        "A result is sufficiently supported",
+        "Generalization scope is unclear",
+        "New predictions emerge"
+      ],
+      "required_state": [
+        "calibrated conclusions",
+        "applicability boundaries",
+        "field context"
+      ],
+      "observable_good_behaviors": [
+        "Separates demonstrated scope from proposed implication",
+        "Generates testable predictions",
+        "Names communities and limitations"
+      ],
+      "common_failure_modes": [
+        "Inflates a narrow result into broad impact",
+        "Treats speculation as finding",
+        "Ignores contexts where the result fails"
+      ],
+      "confusable_with": [
+        "D1 selects important questions before the project",
+        "D21 states immediate justified conclusions"
+      ],
+      "method_modules_to_invoke": [
+        "claims_implications_communication",
+        "literature_novelty"
+      ],
+      "evidence_needed": [
+        "supported conclusions",
+        "external validity evidence",
+        "related open problems"
+      ],
+      "possible_next_actions": [
+        "write bounded implications",
+        "propose a testable next prediction",
+        "identify transfer conditions"
+      ],
+      "revisit_conditions": [
+        "external validation changes scope",
+        "a new field result changes relevance",
+        "claims are revised"
+      ],
+      "stop_or_abstain_conditions": [
+        "The immediate conclusion is not secure enough for broader inference",
+        "Implications would expose restricted or harmful capabilities"
+      ],
+      "do_not_infer": [
+        "Do not infer broad impact from novelty or media interest",
+        "Do not turn a hypothesis into a result"
+      ],
+      "ai_ml_example": "Propose that a verified calibration mechanism may transfer to another shift type, while marking that transfer as a prediction needing evaluation.",
+      "counterexample": "Determining whether the current result is supported at all is D21.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF pp. 8–9, item 27",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D28",
+      "official_label": "Communication audience",
+      "category": "Implications and communication",
+      "routable": true,
+      "source_definition_summary": "Identifies the communication audience and the characteristics that matter for understanding and use.",
+      "research_translation": "Choose whose decision the communication serves and what evidence, terminology, and risk context they need.",
+      "common_research_contexts": [
+        "paper planning",
+        "stakeholder report",
+        "model card or policy brief"
+      ],
+      "trigger_signals": [
+        "Multiple audiences need different evidence",
+        "Terms or risks may be misunderstood",
+        "A dissemination decision is required"
+      ],
+      "required_state": [
+        "communication purpose",
+        "candidate audiences",
+        "audience knowledge and stakes"
+      ],
+      "observable_good_behaviors": [
+        "Names primary and secondary audiences",
+        "Accounts for expertise and decision authority",
+        "Preserves the same evidentiary truth across versions"
+      ],
+      "common_failure_modes": [
+        "Uses a generic audience",
+        "Hides limitations for persuasive effect",
+        "Assumes accessibility means simplification of evidence"
+      ],
+      "confusable_with": [
+        "D3 defines project stakeholders and criteria",
+        "D29 chooses the presentation form and narrative"
+      ],
+      "method_modules_to_invoke": [
+        "claims_implications_communication"
+      ],
+      "evidence_needed": [
+        "audience needs and authority",
+        "communication risks",
+        "required accessibility or domain conventions"
+      ],
+      "possible_next_actions": [
+        "select the primary audience",
+        "define required context and terminology",
+        "separate technical and decision summaries"
+      ],
+      "revisit_conditions": [
+        "audience changes",
+        "misinterpretation is observed",
+        "the communication purpose changes"
+      ],
+      "stop_or_abstain_conditions": [
+        "Audience or disclosure authorization is unknown",
+        "Communication would reveal protected information"
+      ],
+      "do_not_infer": [
+        "Do not infer audience needs from job title alone",
+        "Do not change claim strength for persuasion"
+      ],
+      "ai_ml_example": "Prepare different context layers for ML researchers and clinical governance reviewers while keeping identical performance limitations.",
+      "counterexample": "Selecting a six-panel figure after the audience is fixed is D29.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 9, item 28",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    },
+    {
+      "decision_id": "D29",
+      "official_label": "Evidence-faithful presentation",
+      "category": "Implications and communication",
+      "routable": true,
+      "source_definition_summary": "Chooses how to present work so its reasoning, correctness, and importance can be understood and assessed.",
+      "research_translation": "Design a traceable narrative and artifact form matched to the audience without overstating evidence.",
+      "common_research_contexts": [
+        "paper structure",
+        "research report",
+        "release documentation"
+      ],
+      "trigger_signals": [
+        "Evidence is ready for communication",
+        "The current form obscures correctness",
+        "A compelling but faithful story is needed"
+      ],
+      "required_state": [
+        "audience decision from D28",
+        "calibrated claims",
+        "evidence and trace artifacts"
+      ],
+      "observable_good_behaviors": [
+        "Makes claim–evidence links inspectable",
+        "Shows uncertainty and counterevidence",
+        "Uses a narrative that preserves chronology and revisions where relevant"
+      ],
+      "common_failure_modes": [
+        "Optimizes persuasion over accuracy",
+        "Omits negative results",
+        "Presents a linear success story that erases pivots"
+      ],
+      "confusable_with": [
+        "D17 organizes information for insight",
+        "D28 selects the audience"
+      ],
+      "method_modules_to_invoke": [
+        "claims_implications_communication"
+      ],
+      "evidence_needed": [
+        "audience requirements",
+        "verified claim set",
+        "artifact and accessibility constraints"
+      ],
+      "possible_next_actions": [
+        "choose report, paper, brief, or structured data form",
+        "build a claim-led outline",
+        "include limitations and decision trace summary"
+      ],
+      "revisit_conditions": [
+        "audience feedback reveals misunderstanding",
+        "claims or evidence change",
+        "format constraints change"
+      ],
+      "stop_or_abstain_conditions": [
+        "No authorized presentation can protect sensitive information",
+        "The evidence is too incomplete for the requested form"
+      ],
+      "do_not_infer": [
+        "Do not infer that compelling means certain",
+        "Do not expose private trace content or hidden chain-of-thought"
+      ],
+      "ai_ml_example": "Present an ML result with a claim–evidence table, split diagram, uncertainty plot, negative result, and scoped conclusion.",
+      "counterexample": "Reorganizing raw experiment logs to diagnose an error is D17.",
+      "source_refs": [
+        {
+          "source_id": "WP29-SUPP",
+          "citation": "Price et al. (2021), A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering",
+          "locator": "supplement PDF p. 9, item 29",
+          "doi": "10.1187/cbe.20-12-0276"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/expert-judgment-record.schema.json",
+  "title": "Research Decision Expert Judgment Record v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type", "expert_judgment_id", "search_run_id", "decision_id",
+    "source_evidence_ids", "support_locators", "expert_identity", "expertise_basis", "cues",
+    "options", "judgment", "rationale", "predictions", "tradeoffs",
+    "failure_signals", "applicability_conditions", "limitations",
+    "disagreement_status", "extracted_at"
+  ],
+  "properties": {
+    "record_type": {"const": "expert_judgment"},
+    "expert_judgment_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "search_run_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "decision_id": {"type": "string", "pattern": "^D(?:[1-9]|1[0-9]|2[0-9])$"},
+    "source_evidence_ids": {"type": "array", "minItems": 1, "maxItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "support_locators": {"type": "object", "minProperties": 1, "maxProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+    "expert_identity": {"type": "string", "minLength": 1},
+    "expertise_basis": {"type": "string", "minLength": 1},
+    "cues": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "options": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "judgment": {"type": "string", "minLength": 1},
+    "rationale": {"type": "string", "minLength": 1},
+    "predictions": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "tradeoffs": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "failure_signals": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "applicability_conditions": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "limitations": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "disagreement_status": {"enum": ["no_material_disagreement_found", "material_disagreement", "uncertain"]},
+    "extracted_at": {"type": "string", "format": "date-time"}
+  }
+}

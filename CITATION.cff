@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you evaluate this public Preview, cite this software release and the underlying Price et al. research source."
+title: "Research Decision Skill"
+type: software
+version: 0.5.0-preview
+authors:
+  - family-names: "Odyphus"
+license: Apache-2.0
+preferred-citation:
+  type: software
+  title: "Research Decision Skill"
+  version: 0.5.0-preview
+  authors:
+    - family-names: "Odyphus"
+references:
+  - type: article
+    title: "A Detailed Characterization of the Expert Problem-Solving Process in Science and Engineering: Guidance for Teaching and Assessment"
+    authors:
+      - family-names: "Price"
+        given-names: "Argenta"
+      - family-names: "Kim"
+        given-names: "Candice J."
+      - family-names: "Burkholder"
+        given-names: "Eric W."
+      - family-names: "Fritz"
+        given-names: "Amy V."
+      - family-names: "Wieman"
+        given-names: "Carl E."
+    year: 2021
+    journal: "CBE—Life Sciences Education"
+    volume: 20
+    issue: 3
+    doi: "10.1187/cbe.20-12-0276"

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/router-output.schema.json",
+  "title": "Research Decision Router Output v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["primary_decision", "secondary_decisions", "why_now", "evidence_used", "unknowns", "confidence", "next_method_module"],
+  "properties": {
+    "primary_decision": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^D(?:[1-9]|1[0-9]|2[0-9])$"}
+      ]
+    },
+    "secondary_decisions": {
+      "type": "array",
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^D(?:[1-9]|1[0-9]|2[0-9])$"}
+    },
+    "why_now": {"type": "string", "minLength": 1},
+    "evidence_used": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "unknowns": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "next_method_module": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "enum": [
+            "literature_novelty",
+            "hypothesis_predictive_framework",
+            "experiment_design",
+            "ai_ml_evidence_integrity",
+            "analysis_anomaly",
+            "challenge_try_to_break",
+            "claims_implications_communication"
+          ]
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"primary_decision": {"type": "null"}},
+        "required": ["primary_decision"]
+      },
+      "then": {
+        "properties": {
+          "secondary_decisions": {"maxItems": 0},
+          "confidence": {"const": "low"},
+          "next_method_module": {"type": "null"}
+        }
+      }
+    }
+  ]
+}

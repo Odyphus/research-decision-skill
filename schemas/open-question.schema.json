@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/open-question.schema.json",
+  "title": "Research Decision Open Question v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["question_id", "question", "decision_id", "blocking", "next_information_action", "revisit_condition", "status"],
+  "properties": {
+    "question_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "question": {"type": "string", "minLength": 1},
+    "decision_id": {
+      "oneOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^D(?:[1-9]|1[0-9]|2[0-9])$"}
+      ]
+    },
+    "blocking": {"type": "boolean"},
+    "next_information_action": {"type": "string"},
+    "revisit_condition": {"type": "string"},
+    "status": {"enum": ["open", "answered", "blocked", "closed"]}
+  }
+}

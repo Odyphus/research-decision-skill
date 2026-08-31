@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/learning-record.schema.json",
+  "title": "Research Decision Learning Record v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type", "learning_record_id", "decision_record_id", "decision_id",
+    "domain", "scaffolding_level", "activation_reasons", "demonstrated_cues",
+    "understanding_status", "transfer_status", "observed_gaps", "misconceptions",
+    "next_scaffolding_level", "recorded_at"
+  ],
+  "properties": {
+    "record_type": {"const": "learning_record"},
+    "learning_record_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "decision_record_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "decision_id": {"type": "string", "pattern": "^D(?:[1-9]|1[0-9]|2[0-9])$"},
+    "domain": {"$ref": "#/$defs/domain"},
+    "scaffolding_level": {"$ref": "#/$defs/scaffolding_level"},
+    "activation_reasons": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "demonstrated_cues": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "understanding_status": {"enum": ["not_observed", "partial", "demonstrated", "misconception_detected", "declined"]},
+    "transfer_status": {"enum": ["not_observed", "partial", "demonstrated", "not_demonstrated", "declined"]},
+    "observed_gaps": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "misconceptions": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "next_scaffolding_level": {"$ref": "#/$defs/scaffolding_level"},
+    "recorded_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "scaffolding_level": {"enum": ["full", "guided", "faded", "verification_only"]},
+    "domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "support_status"],
+      "properties": {
+        "name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary", "other"]},
+        "support_status": {"enum": ["public_source_decision_support_preview", "decision_framework_only", "domain_judgment_unavailable"]}
+      },
+      "oneOf": [
+        {"properties": {"name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary"]}, "support_status": {"const": "public_source_decision_support_preview"}}},
+        {"properties": {"name": {"const": "other"}, "support_status": {"const": "domain_judgment_unavailable"}}}
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"scaffolding_level": {"const": "full"}, "next_scaffolding_level": {"enum": ["guided", "faded", "verification_only"]}}, "required": ["scaffolding_level", "next_scaffolding_level"]},
+      "then": {"properties": {"understanding_status": {"const": "demonstrated"}, "transfer_status": {"const": "demonstrated"}}}
+    },
+    {
+      "if": {"properties": {"scaffolding_level": {"const": "guided"}, "next_scaffolding_level": {"enum": ["faded", "verification_only"]}}, "required": ["scaffolding_level", "next_scaffolding_level"]},
+      "then": {"properties": {"understanding_status": {"const": "demonstrated"}, "transfer_status": {"const": "demonstrated"}}}
+    },
+    {
+      "if": {"properties": {"scaffolding_level": {"const": "faded"}, "next_scaffolding_level": {"const": "verification_only"}}, "required": ["scaffolding_level", "next_scaffolding_level"]},
+      "then": {"properties": {"understanding_status": {"const": "demonstrated"}, "transfer_status": {"const": "demonstrated"}}}
+    },
+    {
+      "if": {"properties": {"understanding_status": {"enum": ["not_observed", "declined"]}}, "required": ["understanding_status"]},
+      "then": {"properties": {"demonstrated_cues": {"maxItems": 0}}}
+    },
+    {
+      "if": {"properties": {"understanding_status": {"const": "misconception_detected"}}, "required": ["understanding_status"]},
+      "then": {"properties": {"next_scaffolding_level": {"enum": ["full", "guided"]}}}
+    },
+    {
+      "if": {"properties": {"transfer_status": {"const": "not_demonstrated"}}, "required": ["transfer_status"]},
+      "then": {"properties": {"next_scaffolding_level": {"enum": ["full", "guided"]}}}
+    }
+  ]
+}

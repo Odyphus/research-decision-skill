@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.research-decision/
+.research-exploration/
+.pytest_cache/
+.DS_Store
+Thumbs.db

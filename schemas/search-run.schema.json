@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/search-run.schema.json",
+  "title": "Research Decision Expert Search Run v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type", "search_run_id", "decision_record_id", "decision_id", "domain",
+    "research_task", "search_question", "decision_claim_ids", "constraints", "inclusion_criteria",
+    "exclusion_criteria", "queries", "source_evidence_ids", "coverage",
+    "conflicts", "support_scope", "single_authority_exception", "stopping_reason", "searched_at"
+  ],
+  "properties": {
+    "record_type": {"const": "search_run"},
+    "search_run_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "decision_record_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "decision_id": {"type": "string", "pattern": "^D(?:[1-9]|1[0-9]|2[0-9])$"},
+    "domain": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "support_status"],
+      "properties": {
+        "name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary", "other"]},
+        "support_status": {"enum": ["public_source_decision_support_preview", "decision_framework_only", "domain_judgment_unavailable"]}
+      },
+      "oneOf": [
+        {"properties": {"name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary"]}, "support_status": {"const": "public_source_decision_support_preview"}}},
+        {"properties": {"name": {"const": "other"}, "support_status": {"const": "domain_judgment_unavailable"}}}
+      ]
+    },
+    "research_task": {"type": "string", "minLength": 1},
+    "search_question": {"type": "string", "minLength": 1},
+    "decision_claim_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "constraints": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "inclusion_criteria": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "exclusion_criteria": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "queries": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "source_evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "coverage": {"enum": ["sufficient", "partial", "insufficient", "blocked"]},
+    "conflicts": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "support_scope": {"type": "string", "minLength": 1},
+    "single_authority_exception": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applied", "authority_kind", "issuer", "scope_match", "locator", "basis"],
+      "properties": {
+        "applied": {"type": "boolean"},
+        "authority_kind": {"enum": ["none", "official_standard", "regulatory_guidance"]},
+        "issuer": {"type": "string"},
+        "scope_match": {"type": "string"},
+        "locator": {"type": "string"},
+        "basis": {"type": "string"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"applied": {"const": true}}, "required": ["applied"]},
+          "then": {
+            "properties": {
+              "authority_kind": {"enum": ["official_standard", "regulatory_guidance"]},
+              "issuer": {"minLength": 1},
+              "scope_match": {"minLength": 1},
+              "locator": {"minLength": 1},
+              "basis": {"minLength": 1}
+            }
+          },
+          "else": {"properties": {"authority_kind": {"const": "none"}}}
+        }
+      ]
+    },
+    "stopping_reason": {"type": "string", "minLength": 1},
+    "searched_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"coverage": {"enum": ["sufficient", "partial"]}}, "required": ["coverage"]},
+      "then": {"properties": {"source_evidence_ids": {"minItems": 1}}}
+    }
+  ]
+}

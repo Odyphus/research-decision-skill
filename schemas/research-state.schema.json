@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/research-state.schema.json",
+  "title": "Research Decision State v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "state_revision", "skill_version", "project",
+    "research_goal", "scope", "constraints", "permissions", "claims",
+    "hypotheses", "experiments", "evidence_index", "domain", "search_runs",
+    "expert_judgment_index", "learning_record_index", "current_route", "open_questions",
+    "revisit_queue", "created_at", "updated_at"
+  ],
+  "properties": {
+    "schema_version": {"const": 3},
+    "state_revision": {"type": "integer", "minimum": 1},
+    "skill_version": {"enum": ["0.3.0-preview", "0.4.0-preview", "0.5.0-preview"]},
+    "project": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"},
+        "name": {"type": "string", "minLength": 1}
+      }
+    },
+    "research_goal": {"type": "string"},
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["in_scope", "out_of_scope"],
+      "properties": {
+        "in_scope": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "out_of_scope": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "constraints": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "permissions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["network", "filesystem", "external_actions", "ethics_review"],
+      "properties": {
+        "network": {"enum": ["unknown", "allowed", "denied"]},
+        "filesystem": {"enum": ["unknown", "read_only", "workspace_write", "unrestricted"]},
+        "external_actions": {"enum": ["unknown", "allowed", "denied_until_authorized", "denied"]},
+        "ethics_review": {"enum": ["unknown", "not_required", "required", "approved", "blocked"]}
+      }
+    },
+    "claims": {"type": "array", "items": {"$ref": "#/$defs/tracked_item"}},
+    "hypotheses": {"type": "array", "items": {"$ref": "#/$defs/tracked_item"}},
+    "experiments": {"type": "array", "items": {"$ref": "#/$defs/tracked_item"}},
+    "evidence_index": {"type": "array", "items": {"$ref": "evidence-record.schema.json"}},
+    "domain": {"$ref": "#/$defs/domain"},
+    "search_runs": {"type": "array", "items": {"$ref": "search-run.schema.json"}},
+    "expert_judgment_index": {"type": "array", "items": {"$ref": "expert-judgment-record.schema.json"}},
+    "learning_record_index": {"type": "array", "items": {"$ref": "learning-record.schema.json"}},
+    "current_route": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["decision_record_id", "route"],
+          "properties": {
+            "decision_record_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+            "route": {"$ref": "router-output.schema.json"}
+          }
+        }
+      ]
+    },
+    "open_questions": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "revisit_queue": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["decision_record_id", "condition"],
+        "properties": {
+          "decision_record_id": {"type": "string", "minLength": 1},
+          "condition": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "tracked_item": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "summary", "status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "summary": {"type": "string", "minLength": 1},
+        "status": {"enum": ["open", "active", "supported", "challenged", "rejected", "blocked", "closed"]}
+      }
+    },
+    "domain": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "support_status"],
+      "properties": {
+        "name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary", "other"]},
+        "support_status": {"enum": ["public_source_decision_support_preview", "decision_framework_only", "domain_judgment_unavailable"]}
+      },
+      "oneOf": [
+        {"properties": {"name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary"]}, "support_status": {"const": "public_source_decision_support_preview"}}},
+        {"properties": {"name": {"const": "other"}, "support_status": {"const": "domain_judgment_unavailable"}}}
+      ]
+    }
+  }
+}

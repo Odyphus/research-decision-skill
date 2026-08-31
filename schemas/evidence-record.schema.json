@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/evidence-record.schema.json",
+  "title": "Research Decision Evidence Record v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "usage_ids",
+    "claim_ids",
+    "canonical_work_id",
+    "artifact_id",
+    "study_id",
+    "aliases",
+    "source_identity",
+    "relationship",
+    "independence_status",
+    "independence_basis",
+    "relation",
+    "location",
+    "access_status",
+    "verification_status",
+    "license_status",
+    "limitations",
+    "checked_at",
+    "notes"
+  ],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "usage_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "claim_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "canonical_work_id": {"type": "string", "minLength": 1},
+    "artifact_id": {"type": "string", "minLength": 1},
+    "study_id": {"type": "string", "minLength": 1},
+    "aliases": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "source_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["author_or_issuer", "title", "publication_date", "source_type", "stable_locator"],
+      "properties": {
+        "author_or_issuer": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "publication_date": {"type": "string", "minLength": 1},
+        "source_type": {"enum": ["peer_reviewed_paper", "official_standard", "regulatory_guidance", "research_team_protocol", "expert_report", "technical_article", "other"]},
+        "stable_locator": {"type": "string", "minLength": 1}
+      }
+    },
+    "relationship": {
+      "enum": [
+        "canonical",
+        "version_of",
+        "mirror_of",
+        "supplement_to",
+        "derived_from",
+        "same_study",
+        "independent_work",
+        "unknown"
+      ]
+    },
+    "independence_status": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "independent",
+          "not_independent",
+          "partially_independent",
+          "unknown",
+          "not_applicable"
+        ]
+      }
+    },
+    "independence_basis": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "relation": {"enum": ["support", "oppose", "mixed", "context", "unknown"]},
+    "location": {"type": "string", "minLength": 1},
+    "access_status": {"enum": ["available", "blocked", "unknown"]},
+    "verification_status": {
+      "enum": ["verified", "alternate_verified", "blocked", "unknown"]
+    },
+    "license_status": {
+      "enum": ["verified_open", "verified_restricted", "unknown", "not_applicable"]
+    },
+    "limitations": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "checked_at": {"type": "string", "format": "date-time"},
+    "notes": {"type": "string"}
+  }
+}

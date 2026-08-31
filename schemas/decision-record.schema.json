@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Odyphus/research-decision-skill/schemas/decision-record.schema.json",
+  "title": "Research Decision Record v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "decision_record_id", "decision_id", "decision_label", "status",
+    "research_context", "question", "alternatives", "current_choice",
+    "evidence_for", "evidence_against", "missing_evidence", "constraints",
+    "uncertainty", "confidence", "rationale", "next_high_information_action",
+    "revisit_condition", "stop_or_pivot_condition", "source_refs", "domain",
+    "search_run_ids", "expert_judgment_ids", "user_initial_judgment",
+    "expert_comparison_feedback", "user_revised_decision",
+    "transferable_principles", "decision_support", "explanation_support",
+    "learning_record_ids", "supersedes",
+    "created_at", "updated_at"
+  ],
+  "properties": {
+    "decision_record_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "decision_id": {"type": "string", "pattern": "^D(?:[1-9]|1[0-9]|2[0-9])$"},
+    "decision_label": {"type": "string", "minLength": 1},
+    "status": {"enum": ["open", "provisional", "accepted", "rejected", "blocked", "reopened", "superseded"]},
+    "research_context": {"type": "string"},
+    "question": {"type": "string", "minLength": 1},
+    "alternatives": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "current_choice": {"type": ["string", "null"]},
+    "evidence_for": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "evidence_against": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "missing_evidence": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "constraints": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "uncertainty": {"type": "string"},
+    "confidence": {"enum": ["low", "medium", "high"]},
+    "rationale": {"type": "string", "minLength": 1},
+    "next_high_information_action": {"type": "string"},
+    "revisit_condition": {"type": "string"},
+    "stop_or_pivot_condition": {"type": "string"},
+    "source_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "domain": {"$ref": "#/$defs/domain"},
+    "search_run_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"}},
+    "expert_judgment_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"}},
+    "user_initial_judgment": {"$ref": "#/$defs/user_judgment"},
+    "expert_comparison_feedback": {
+      "type": "object", "additionalProperties": false,
+      "required": ["agreements", "differences", "feedback"],
+      "properties": {
+        "agreements": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "differences": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "feedback": {"type": "string", "minLength": 1}
+      }
+    },
+    "user_revised_decision": {
+      "type": "object", "additionalProperties": false,
+      "required": ["choice", "reasoning_summary", "revision_status"],
+      "properties": {
+        "choice": {"type": ["string", "null"]},
+        "reasoning_summary": {"type": "string"},
+        "revision_status": {"enum": ["revised", "confirmed", "pending"]}
+      }
+    },
+    "transferable_principles": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "decision_support": {
+      "type": "object", "additionalProperties": false,
+      "required": ["action_status", "applicability_conditions", "conditions_that_change_decision"],
+      "properties": {
+        "action_status": {"enum": ["可直接推进", "验证后推进", "暂缓定论"]},
+        "applicability_conditions": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "conditions_that_change_decision": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "explanation_support": {
+      "type": "object", "additionalProperties": false,
+      "required": ["scaffolding_level", "activation_reasons", "components_shown", "understanding_status", "transfer_status"],
+      "properties": {
+        "scaffolding_level": {"enum": ["full", "guided", "faded", "verification_only"]},
+        "activation_reasons": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "components_shown": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "understanding_status": {"enum": ["not_observed", "partial", "demonstrated", "misconception_detected", "declined"]},
+        "transfer_status": {"enum": ["not_observed", "partial", "demonstrated", "not_demonstrated", "declined"]}
+      }
+    },
+    "learning_record_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"}},
+    "supersedes": {"type": ["string", "null"], "minLength": 1},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "domain": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "support_status"],
+      "properties": {
+        "name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary", "other"]},
+        "support_status": {"enum": ["public_source_decision_support_preview", "decision_framework_only", "domain_judgment_unavailable"]}
+      },
+      "oneOf": [
+        {"properties": {"name": {"enum": ["ai_ml", "mathematics_statistics", "computer_science", "physics_astronomy", "chemistry_materials", "engineering", "life_sciences", "earth_environmental_sciences", "stem_interdisciplinary"]}, "support_status": {"const": "public_source_decision_support_preview"}}},
+        {"properties": {"name": {"const": "other"}, "support_status": {"const": "domain_judgment_unavailable"}}}
+      ]
+    },
+    "user_judgment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["choice", "reasoning_summary", "elicitation_status"],
+      "properties": {
+        "choice": {"type": ["string", "null"]},
+        "reasoning_summary": {"type": "string"},
+        "elicitation_status": {"enum": ["provided", "scaffolded", "deferred_by_user"]}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"enum": ["reopened", "superseded"]}}, "required": ["status"]},
+      "then": {"properties": {"supersedes": {"type": "string", "minLength": 1}}}
+    },
+    {
+      "if": {"properties": {"expert_judgment_ids": {"maxItems": 0}}, "required": ["expert_judgment_ids"]},
+      "then": {"properties": {"decision_support": {"properties": {"action_status": {"const": "暂缓定论"}}}}}
+    }
+  ]
+}
